@@ -24,4 +24,4 @@ sitdown.
 Default: 1.0 END
 
 END
- .
+theend.

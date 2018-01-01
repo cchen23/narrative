@@ -26,7 +26,7 @@ OUTPUT_ROOT = os.path.join(os.path.dirname(__file__), os.path.pardir, 'story')
 INPUT_PATH  = os.path.join(os.path.dirname(__file__), os.path.pardir, 'schema')
 FILE_FORMAT = '.txt'
 
-# helper functions 
+# helper functions
 class Transition:
     """Represents a single set of transitions, with a condition"""
     def __init__(self, trans_cond, probs, trans_states):
@@ -37,7 +37,7 @@ class Transition:
     def matches_cond(self, grounding, attributes):
         if self.trans_cond == 'Default':
             return True
-        
+
         cond_split = self.trans_cond.replace('.', ' ').split(' ')
         cond_fill = attributes[grounding[cond_split[0]]][cond_split[1]]
         cond_fill = unicode(cond_fill, 'utf-8')
@@ -299,7 +299,7 @@ def write_one_story(schema_info, f_stories, f_Q_next,
 
         # get a un-filled state
         filled, fillers, scene = get_filled_state(curr_state, grounding, states, attributes, **gfs_kwargs)
-        scenes.append(scene) # append scene to scene vector 
+        scenes.append(scene) # append scene to scene vector
 
         if attach_questions:
             filled = attach_role_question_marker(filled, states, curr_state)
@@ -586,7 +586,7 @@ def get_filled_state(curr_state, curr_grounding, all_states, all_attributes,
 
     text_split = all_states[curr_state].text.replace(']', '[').split('[')
     filler_names = []
-    used_fillers = [] 
+    used_fillers = []
     # loop over segments
     for i in range(1, len(text_split), 2):
         slot = text_split[i].split('.')
@@ -658,15 +658,21 @@ def main(rand_seed, input_fnames, n_input_files, names_concat, n_iterations, n_r
         output_path = mkdir(names_concat, n_iterations, n_repeats)
         f_stories = open_output_file(output_path, names_concat, n_iterations, n_repeats)
         f_QA = open_output_file(output_path, names_concat + '_QA', n_iterations, n_repeats)
+        f_entities = open_output_file(output_path, names_concat + '_entities', n_iterations, n_repeats)
     else:
         # dummy I/O objects
         f_stories = cStringIO.StringIO()
         f_QA = cStringIO.StringIO()
-
+        f_entities = cStringIO.StringIO()
     # read all schema files
     schema_info = []
     for i in range(n_input_files):
         schema_info.append(read_schema_file(input_fnames[i]))
+
+    # Write all entities and roles to f_entities file.
+    for schema in schema_info:
+        f_entities.write(str(schema[1])+'\n')
+        f_entities.write(str(schema[2])+'\n')
 
     scenes = [] # s_1:n
     events = [] # e_1:n

@@ -1,0 +1,34 @@
+Entities
+-----
+Person: Name
+Olivia
+Will
+Mariko
+Pradeep
+Sarah
+Julian
+
+Drink: Name
+drink
+hot tea
+decaf black coffee
+
+Roles
+-----
+Subject: Person
+Friend: Person
+Barista: Person
+Drink_ordered: Drink
+
+States
+-----
+BEGIN
+[Subject.Name] orders a [Drink_ordered.Name] from [Barista.Name].
+Default: 1.0 Greetfriend
+
+Greetfriend
+[Subject.Name] sees [Friend.Name] and says hi.
+Default: 1.0 END
+
+END
+The friends talk.

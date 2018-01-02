@@ -671,8 +671,9 @@ def main(rand_seed, input_fnames, n_input_files, names_concat, n_iterations, n_r
 
     # Write all entities and roles to f_entities file.
     for schema in schema_info:
-        f_entities.write(str(schema[1])+'\n')
-        f_entities.write(str(schema[2])+'\n')
+        f_entities.write(str(schema[1])+'\n') # Entities
+        f_entities.write(str(schema[2])+'\n') # Roles
+        f_entities.write(str(schema[3])+'\n') # Attributes
 
     scenes = [] # s_1:n
     events = [] # e_1:n

@@ -194,8 +194,12 @@ def read_schema_file(input_fname):
     return (attributes, entities, roles, states)
 
 
-def mkdir(names_concat, n_iterations, n_repeats):
+def mkdir(names_concat, n_iterations, n_repeats, stories_kwargs):
     output_subpath = ('%s_%s_%s' % (names_concat, str(n_iterations), str(n_repeats)))
+    print(stories_kwargs)
+    for story_option in stories_kwargs.keys():
+        if stories_kwargs[story_option] == True:
+            output_subpath += "_%s" % (story_option.replace("_",""))
     # make output directory if not exists
     if not os.path.exists(OUTPUT_ROOT):
         os.makedirs(OUTPUT_ROOT)
@@ -655,7 +659,7 @@ def main(rand_seed, input_fnames, n_input_files, names_concat, n_iterations, n_r
 
     if write_to_files:
         # get a handle on the output file
-        output_path = mkdir(names_concat, n_iterations, n_repeats)
+        output_path = mkdir(names_concat, n_iterations, n_repeats, stories_kwargs)
         f_stories = open_output_file(output_path, names_concat, n_iterations, n_repeats)
         f_QA = open_output_file(output_path, names_concat + '_QA', n_iterations, n_repeats)
         f_entities = open_output_file(output_path, names_concat + '_entities', n_iterations, n_repeats)

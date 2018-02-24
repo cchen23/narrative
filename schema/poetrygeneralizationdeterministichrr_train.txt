@@ -1,0 +1,211 @@
+Entities
+-----
+Person: Name
+TrainPerson0
+TrainPerson1
+TrainPerson2
+TrainPerson3
+TrainPerson4
+TrainPerson5
+TrainPerson6
+TrainPerson7
+TrainPerson8
+TrainPerson9
+TrainPerson10
+TrainPerson11
+TrainPerson12
+TrainPerson13
+TrainPerson14
+TrainPerson15
+TrainPerson16
+TrainPerson17
+TrainPerson18
+TrainPerson19
+TrainPerson20
+TrainPerson21
+TrainPerson22
+TrainPerson23
+TrainPerson24
+TrainPerson25
+TrainPerson26
+TrainPerson27
+TrainPerson28
+TrainPerson29
+TrainPerson30
+TrainPerson31
+TrainPerson32
+TrainPerson33
+TrainPerson34
+TrainPerson35
+TrainPerson36
+TrainPerson37
+TrainPerson38
+TrainPerson39
+TrainPerson40
+TrainPerson41
+TrainPerson42
+TrainPerson43
+TrainPerson44
+TrainPerson45
+TrainPerson46
+TrainPerson47
+TrainPerson48
+TrainPerson49
+
+Drink: Name
+TrainDrink0
+TrainDrink1
+TrainDrink2
+TrainDrink3
+TrainDrink4
+TrainDrink5
+TrainDrink6
+TrainDrink7
+TrainDrink8
+TrainDrink9
+TrainDrink10
+TrainDrink11
+TrainDrink12
+TrainDrink13
+TrainDrink14
+TrainDrink15
+TrainDrink16
+TrainDrink17
+TrainDrink18
+TrainDrink19
+TrainDrink20
+TrainDrink21
+TrainDrink22
+TrainDrink23
+TrainDrink24
+TrainDrink25
+TrainDrink26
+TrainDrink27
+TrainDrink28
+TrainDrink29
+TrainDrink30
+TrainDrink31
+TrainDrink32
+TrainDrink33
+TrainDrink34
+TrainDrink35
+TrainDrink36
+TrainDrink37
+TrainDrink38
+TrainDrink39
+TrainDrink40
+TrainDrink41
+TrainDrink42
+TrainDrink43
+TrainDrink44
+TrainDrink45
+TrainDrink46
+TrainDrink47
+TrainDrink48
+TrainDrink49
+
+Dessert: Name
+TrainDessert0
+TrainDessert1
+TrainDessert2
+TrainDessert3
+TrainDessert4
+TrainDessert5
+TrainDessert6
+TrainDessert7
+TrainDessert8
+TrainDessert9
+TrainDessert10
+TrainDessert11
+TrainDessert12
+TrainDessert13
+TrainDessert14
+TrainDessert15
+TrainDessert16
+TrainDessert17
+TrainDessert18
+TrainDessert19
+TrainDessert20
+TrainDessert21
+TrainDessert22
+TrainDessert23
+TrainDessert24
+TrainDessert25
+TrainDessert26
+TrainDessert27
+TrainDessert28
+TrainDessert29
+TrainDessert30
+TrainDessert31
+TrainDessert32
+TrainDessert33
+TrainDessert34
+TrainDessert35
+TrainDessert36
+TrainDessert37
+TrainDessert38
+TrainDessert39
+TrainDessert40
+TrainDessert41
+TrainDessert42
+TrainDessert43
+TrainDessert44
+TrainDessert45
+TrainDessert46
+TrainDessert47
+TrainDessert48
+TrainDessert49
+
+Roles
+-----
+Subject: Person
+Friend: Person
+Emcee: Person
+Poet: Person
+Drink_bought: Drink
+Dessert_bought: Dessert
+
+States
+-----
+BEGIN
+begin [Subject.Name] coffee_shop.
+Default: 1.0 Order_drink
+
+Order_drink
+ORDER_DRINK [Subject.Name] [Drink_bought.Name].
+Default: 1.0 Sit_down
+
+Too_expensive
+TOO_EXPENSIVE [Subject.Name] [Drink_bought.Name].
+Default: 1.0 Sit_down
+
+Sit_down
+SIT_DOWN [Subject.Name] [Friend.Name].
+Default: 1.0 Emcee_intro
+
+Emcee_intro
+EMCEE_INTRO [Emcee.Name] [Poet.Name].
+Default: 1.0 Poet_performs
+
+Poet_performs
+POET_PERFORMS [Poet.Name] poet_poem.
+Default: 1.0 Subject_performs
+
+Subject_declines
+SUBJECT_DECLINES [Subject.Name] perform.
+Default: 1.0 Say_goodbye
+
+Subject_performs
+SUBJECT_PERFORMS [Subject.Name] subject_poem.
+Default: 1.0 Say_goodbye
+
+Say_goodbye
+SAY_GOODBYE [Subject.Name] [Friend.Name].
+Default: 1.0 END
+
+Order_dessert
+ORDER_DESSERT [Subject.Name] [Dessert_bought.Name].
+Default: 1.0 END
+
+END
+END [Subject.Name] story.

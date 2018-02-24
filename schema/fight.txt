@@ -6,7 +6,7 @@ Jesse, he, his, him, gotten into a fight with his mom, “Its not everyday you m
 Nick, he, his, him, gotten a parking ticket, “The nectar of the gods makes people do crazy things.”, No, No
 Vera, she, her, her, found her calculus problem set ripped to shreds in her dog’s cage, “Some people will do anything for the coffee fix.”, No, Yes
 Silvia, she, her, her, realized that she had left her phone on the bus, “I think some caffeine would’ve helped that one.”, No, No
-Ben, he, his, him, dropped his keys in a storm drain, “There was no need to worry. The baristas are trained in kung fu.”, Yes, No 
+Ben, he, his, him, dropped his keys in a storm drain, “There was no need to worry. The baristas are trained in kung fu.”, Yes, No
 
 Drink: Name
 coffee
@@ -51,7 +51,7 @@ Subject.Violent == "Yes": 0.6 Shove, 0.2 Ignore, 0.2 Subject_stares
 Default: 0.1 Shove, 0.4 Ignore, 0.5 Subject_stares
 
 Say_excuse_me
-[Victim.Name] was astonished and said, “Excuse me?!’ 
+[Victim.Name] was astonished and said, “Excuse me?!’
 Subject.Violent == "Yes": 0.6 Shove, 0.2 Ignore, 0.2 Subject_stares
 Default: 0.1 Shove, 0.4 Ignore, 0.5 Subject_stares
 

@@ -1,0 +1,91 @@
+Entities
+-----
+Person: Name
+TestPerson0
+TestPerson1
+TestPerson2
+TestPerson3
+TestPerson4
+TestPerson5
+TestPerson6
+TestPerson7
+TestPerson8
+TestPerson9
+
+Drink: Name
+TestDrink0
+TestDrink1
+TestDrink2
+TestDrink3
+TestDrink4
+TestDrink5
+TestDrink6
+TestDrink7
+TestDrink8
+TestDrink9
+
+Dessert: Name
+TestDessert0
+TestDessert1
+TestDessert2
+TestDessert3
+TestDessert4
+TestDessert5
+TestDessert6
+TestDessert7
+TestDessert8
+TestDessert9
+
+Roles
+-----
+Subject: Person
+Friend: Person
+Emcee: Person
+Poet: Person
+Drink_bought: Drink
+Dessert_bought: Dessert
+
+States
+-----
+BEGIN
+begin [Subject.Name] coffee_shop.
+Default: 1.0 Order_drink
+
+Order_drink
+ORDER_DRINK [Subject.Name] [Drink_bought.Name].
+Default: 1.0 Sit_down
+
+Too_expensive
+TOO_EXPENSIVE [Subject.Name] [Drink_bought.Name].
+Default: 1.0 Sit_down
+
+Sit_down
+SIT_DOWN [Subject.Name] [Friend.Name].
+Default: 1.0 Emcee_intro
+
+Emcee_intro
+EMCEE_INTRO [Emcee.Name] [Poet.Name].
+Default: 1.0 Poet_performs
+
+Poet_performs
+POET_PERFORMS [Poet.Name] poet_poem.
+Default: 1.0 Subject_performs
+
+Subject_declines
+SUBJECT_DECLINES [Subject.Name] perform.
+Default: 1.0 Say_goodbye
+
+Subject_performs
+SUBJECT_PERFORMS [Subject.Name] subject_poem.
+Default: 1.0 Say_goodbye
+
+Say_goodbye
+SAY_GOODBYE [Subject.Name] [Friend.Name].
+Default: 1.0 END
+
+Order_dessert
+ORDER_DESSERT [Subject.Name] [Dessert_bought.Name].
+Default: 1.0 END
+
+END
+END [Subject.Name] story.

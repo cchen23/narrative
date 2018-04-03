@@ -29,8 +29,35 @@ source activate thesis
 # date
 # echo "***************************************** Generate coffeeshop_simple stories *****************************************"
 # python /home/cc27/Thesis/narrative/src/run_engine.py coffeeshop_simple 100000 1 > outputs/$(date +"%Y%m%d%k%M%s")_writestories_CSWcoffeeshopsimple.txt
+# date
+# echo "***************************************** Generate coffeeshop_differentlengths stories *****************************************"
+# python /home/cc27/Thesis/narrative/src/run_engine.py coffeeshop_differentlengths 100000 1 > outputs/$(date +"%Y%m%d%k%M%s")_writestories_CSWcoffeeshopdifferentlengths.txt
+# date
+# echo "***************************************** Generate poetry stories *****************************************"
+# python /home/cc27/Thesis/narrative/src/run_engine.py poetry 100000 1 > outputs/$(date +"%Y%m%d%k%M%s")_writestories_CSWcoffeeshoppoetry.txt
+# date
+# echo "***************************************** Generate poetry stories *****************************************"
+# python /home/cc27/Thesis/narrative/src/run_engine.py poetryeightchoices 100000 1 > outputs/$(date +"%Y%m%d%H%M%s")_writestories_CSWcoffeeshoppoetryeightchoices.txt
+# date
+# echo "***************************************** Generate poetry stories with role markers *****************************************"
+# python /home/cc27/Thesis/narrative/src/run_engine.py poetryeightchoices 100000 1 > outputs/$(date +"%Y%m%d%H%M%s")_writestories_CSWcoffeeshoppoetryeightchoices_withrolemarkers.txt
+# date
+# echo "***************************************** Generate deterministic poetry stories *****************************************"
+# python /home/cc27/Thesis/narrative/src/run_engine.py poetryeightchoices_deterministic 100000 1 > outputs/$(date +"%Y%m%d%H%M%s")_writestories_CSWcoffeeshoppoetryeightchoices_deterministic.txt
+# date
+# echo "***************************************** Generate attribute dependent poetry stories *****************************************"
+# python /home/cc27/Thesis/narrative/src/run_engine.py poetryeightchoices_attributedependent 100000 1 > outputs/$(date +"%Y%m%d%H%M%s")_writestories_CSWcoffeeshoppoetryeightchoices_attributedependent.txt
 date
-echo "***************************************** Generate coffeeshop_differentlengths stories *****************************************"
-python /home/cc27/Thesis/narrative/src/run_engine.py coffeeshop_differentlengths 100000 1 > outputs/$(date +"%Y%m%d%k%M%s")_writestories_CSWcoffeeshopdifferentlengths.txt
+echo "***************************************** Generate generalization stories *****************************************"
+python /home/cc27/Thesis/narrative/src/run_engine.py poetrygeneralization_train 80000 1 > outputs/$(date +"%Y%m%d%H%M%s")_writestories_CSWcoffeeshoppoetryeightchoices_generalizationtrain.txt
 date
+echo "***************************************** Generate generalization stories *****************************************"
+python /home/cc27/Thesis/narrative/src/run_engine.py poetrygeneralization_test 20000 1 > outputs/$(date +"%Y%m%d%H%M%s")_writestories_CSWcoffeeshoppoetryeightchoices_generalizationtest.txt
+date
+# echo "***************************************** Generate generalization stories, hrr format *****************************************"
+# python /home/cc27/Thesis/narrative/src/run_engine.py poetrygeneralizationdeterministichrr_train 10000 1 > outputs/$(date +"%Y%m%d%H%M%s")_writestories_CSWcoffeeshoppoetryhrrdeterministic_generalizationtrain.txt
+# date
+# echo "***************************************** Generate generalization stories,  hrr format *****************************************"
+# python /home/cc27/Thesis/narrative/src/run_engine.py poetrygeneralizationdeterministichrr_test 10000 1 > outputs/$(date +"%Y%m%d%H%M%s")_writestories_CSWcoffeeshoppoetryhrrdeterministic_generalizationtest.txt
+# date
 echo "Finished"

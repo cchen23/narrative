@@ -1,12 +1,43 @@
+"""Combines stories in two folders.
+
+Used to combine train and test story folders.
+Train and test stories are generated using separate files to enforce separate
+train and test fillers. Experiment writers (experiment_writer_rolefillerbinding.py)
+then separate these stories into a train and test set. Stories are combined into
+a single file (as opposed to separately generating train and test sets) to ensure
+that non-filler words share the same representations across datasets.
+
+Assumes stories are generated using run_engine.py.
+"""
 import ast
 import sys
 
 def make_helper_filename(foldername, helpername):
+    """Generates the name of a file created by run_engine.py.
+
+    Assumes stories are generated using run_engine.py.
+
+    Args:
+        foldername: Name of folder containing helper files.
+        helpername: Specifier for helper file. Options: ["QA", "entities"]
+    """
     split_name = foldername.split("_")
     split_helpername = split_name[:-2] + [helpername] + split_name[-2:]
     return "_".join(split_helpername)
 
 def combine_storyfolders(inputname1, inputname2, outputname):
+    """Combine stories from two folders.
+
+    Assumes stories are generated using run_engine.py.
+
+    Args:
+        inputname1: Folder name containing first set of stories.
+        inputname2: Folder name containing second set of stories.
+        outputname: Folder name for combined stories.
+
+    Saves:
+        Files for combined stories.
+    """
     STORY_BASEPATH = "/home/cc27/Thesis/narrative/story/"
     with open("%s%s/%s.txt" % (STORY_BASEPATH, outputname, outputname), 'wb') as outfile:
         with open("%s%s/%s.txt" % (STORY_BASEPATH, inputname1, inputname1), 'rb') as infile:

@@ -196,10 +196,7 @@ def read_schema_file(input_fname):
 
 def mkdir(names_concat, n_iterations, n_repeats, stories_kwargs):
     output_subpath = ('%s_%s_%s' % (names_concat, str(n_iterations), str(n_repeats)))
-    print(stories_kwargs)
-    for story_option in stories_kwargs.keys():
-        if stories_kwargs[story_option] == True:
-            output_subpath += "_%s" % (story_option.replace("_",""))
+    output_subpatch = update_path_storyoptions(output_subpath, stories_kwargs)
     # make output directory if not exists
     if not os.path.exists(OUTPUT_ROOT):
         os.makedirs(OUTPUT_ROOT)
@@ -211,6 +208,11 @@ def mkdir(names_concat, n_iterations, n_repeats, stories_kwargs):
         print('- mkdir: %s', final_output_path)
     return final_output_path
 
+def update_path_storyoptions(path, stories_kwargs):
+    for story_option in stories_kwargs.keys():
+        if stories_kwargs[story_option] == True:
+            path += "_%s" % (story_option.replace("_",""))
+    return path
 
 def open_output_file(output_path, input_fname, n_iterations, n_repeats):
     n_iterations = str(n_iterations)
@@ -654,11 +656,13 @@ def main(rand_seed, input_fnames, n_input_files, names_concat, n_iterations, n_r
             attach_questions=False,  # attach question marker at the end of the state (e.g. Q_subject)
             gen_symbolic_states=False,  # GEN_SYMBOLIC_STATES = False
             attach_role_marker=False,  # ATTACH_ROLE_MARKER = False
-            attach_role_maker_before=['Pronoun', 'Name', 'Pronoun_possessive', 'Pronoun_object'],
+            #attach_role_maker_before=['Pronoun', 'Name', 'Pronoun_possessive', 'Pronoun_object'],
+            attach_role_maker_before=['Name'],
         )
 
     if write_to_files:
         # get a handle on the output file
+        names_concat = update_path_storyoptions(names_concat, stories_kwargs)
         output_path = mkdir(names_concat, n_iterations, n_repeats, stories_kwargs)
         f_stories = open_output_file(output_path, names_concat, n_iterations, n_repeats)
         f_QA = open_output_file(output_path, names_concat + '_QA', n_iterations, n_repeats)

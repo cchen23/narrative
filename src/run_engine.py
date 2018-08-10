@@ -25,7 +25,7 @@ if __name__ == "__main__":
     stories_kwargs = dict(
         mark_end_state=False,  # attach end_of_state, end_of_story marker
         attach_questions=False,  # attach question marker at the end of the state (e.g. Q_subject)
-        gen_symbolic_states=False,  # GEN_SYMBOLIC_STATES = False
+        gen_symbolic_states=True,  # GEN_SYMBOLIC_STATES = False
         attach_role_marker=False,  # ATTACH_ROLE_MARKER = False
         attach_role_maker_before=['Pronoun', 'Name', 'Pronoun_possessive', 'Pronoun_object'],
     )

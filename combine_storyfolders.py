@@ -39,21 +39,21 @@ def combine_storyfolders(inputname1, inputname2, outputname):
         Files for combined stories.
     """
     STORY_BASEPATH = "/home/cc27/Thesis/narrative/story/"
-    with open("%s%s/%s.txt" % (STORY_BASEPATH, outputname, outputname), 'wb') as outfile:
-        with open("%s%s/%s.txt" % (STORY_BASEPATH, inputname1, inputname1), 'rb') as infile:
+    with open(os.path.join(STORY_BASEPATH, outputname, outputname + ".txt"), 'wb') as outfile:
+        with open(os.path.join(STORY_BASEPATH, inputname1, inputname1 + ".txt"), 'rb') as infile:
             outfile.write(infile.read())
-        with open("%s%s/%s.txt" % (STORY_BASEPATH, inputname2, inputname2), 'rb') as infile:
-            outfile.write(infile.read())
-
-    with open("%s%s/%s.txt" % (STORY_BASEPATH, outputname, make_helper_filename(outputname, "QA")), 'wb') as outfile:
-        with open("%s%s/%s.txt" % (STORY_BASEPATH, inputname1, make_helper_filename(inputname1, "QA")), 'rb') as infile:
-            outfile.write(infile.read())
-        with open("%s%s/%s.txt" % (STORY_BASEPATH, inputname2, make_helper_filename(inputname2, "QA")), 'rb') as infile:
+        with open(os.path.join(STORY_BASEPATH, inputname2, inputname2 + ".txt"), 'rb') as infile:
             outfile.write(infile.read())
 
-    with open("%s%s/%s.txt" % (STORY_BASEPATH, outputname, make_helper_filename(outputname, "entities")), 'wb') as outfile:
-            with open("%s%s/%s.txt" % (STORY_BASEPATH, inputname1, make_helper_filename(inputname1, "entities")), 'rb') as infile1:
-                with open("%s%s/%s.txt" % (STORY_BASEPATH, inputname2, make_helper_filename(inputname2, "entities")), 'rb') as infile2:
+    with open(os.path.join(STORY_BASEPATH, outputname, make_helper_filename(outputname, "QA") + ".txt"), 'wb') as outfile:
+        with open(os.path.join(STORY_BASEPATH, inputname1, make_helper_filename(inputname1, "QA") + ".txt"), 'rb') as infile:
+            outfile.write(infile.read())
+        with open(os.path.join(STORY_BASEPATH, inputname2, make_helper_filename(inputname2, "QA") + ".txt"), 'rb') as infile:
+            outfile.write(infile.read())
+
+    with open(os.path.join(STORY_BASEPATH, outputname, make_helper_filename(outputname, "entities") + ".txt"), 'wb') as outfile:
+            with open(os.path.join(STORY_BASEPATH, inputname1, make_helper_filename(inputname1, "entities") + ".txt"), 'rb') as infile1:
+                with open(os.path.join(STORY_BASEPATH, inputname2, make_helper_filename(inputname2, "entities") + ".txt"), 'rb') as infile2:
                     entities1 = ast.literal_eval(infile1.readline())
                     entities2 = ast.literal_eval(infile2.readline())
                     assignments = ast.literal_eval(infile1.readline())

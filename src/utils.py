@@ -92,5 +92,3 @@ def make_output_cond_dirs(output_path):
     for i in range(len(condition_list)):
         if not os.path.exists(os.path.join(output_path, condition_list[i])):
             os.makedirs(os.path.join(output_path, condition_list[i]))
-
-
